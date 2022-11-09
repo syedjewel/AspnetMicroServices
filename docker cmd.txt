@@ -1,0 +1,15 @@
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
+
+--redis
+docker run -d -p 6379:6379 --name aspnetrun-redis redis
+--Logs of docker images
+docker logs -f aspnetrun-redis
+
+docker exec -it aspnetrun-redis /bin/bash
+
+docker exec -it catalogdb /bin/bash
+
+db.Products.find().pretty();
+
+docker exec -it aspnetrun-redis /bin/bash
+redis-cli
